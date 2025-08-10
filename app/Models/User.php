@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'company_id',
+
     ];
 
     /**
@@ -44,5 +46,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Primary company (ownership)
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    // All companies user belongs to (many-to-many)
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'company_user');
     }
 }
