@@ -41,3 +41,23 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+
+type AuthUser = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+type AuthCompany = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
+type InertiaProps = {
+  auth: {
+    user: AuthUser | null;
+    company: AuthCompany | null;
+  };
+};
