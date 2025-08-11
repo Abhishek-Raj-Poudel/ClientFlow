@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Company extends Model
 {
@@ -18,6 +19,21 @@ class Company extends Model
         'zip',
     ];
 
+
+    protected static function booted()
+    {
+        static::creating(function ($company) {
+            $baseSlug = Str::slug($company->name);
+            $i = 1;
+
+            while (Company::where('slug', $baseSlug)->exists()) {
+                $baseSlug = $baseSlug . '-' . $i;
+                $i++;
+            }
+
+            $company->slug = $baseSlug;
+        });
+    }
 
 
     // Ownership: one company owns many users via users.company_id (foreign key)
