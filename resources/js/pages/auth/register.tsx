@@ -22,6 +22,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        company_name: '',
     });
 
     const submit: FormEventHandler = (e) => {
@@ -99,6 +100,22 @@ export default function Register() {
                             placeholder="Confirm password"
                         />
                         <InputError message={errors.password_confirmation} />
+                    </div>
+                    <div className="grid gap-2">
+                    <Label htmlFor="company_name">Company Name</Label>
+                    <Input
+                    id="company_name"
+                    type="text"
+                    required
+                    autoFocus
+                    tabIndex={5}
+                    autoComplete="company_name"
+                    value={data.company_name}
+                    onChange={(e) => setData('company_name', e.target.value)}
+                    disabled={processing}
+                    placeholder="Full Company name"
+                    />
+                    <InputError message={errors.company_name} className="mt-2" />
                     </div>
 
                     <Button type="submit" className="mt-2 w-full" tabIndex={5} disabled={processing}>

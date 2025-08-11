@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\TenantMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
